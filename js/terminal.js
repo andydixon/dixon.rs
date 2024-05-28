@@ -1,18 +1,18 @@
 // Constants for layout dimensions and settings
-const columnHeight = 17;
-const wordColumnWidth = 12;
-const count = 12;
-const difficulty = Math.random() * (10 - 7) + 7;
-const dudLength = 8;
+let columnHeight = 17;
+let wordColumnWidth = 12;
+let count = 12;
+let difficulty = Math.random() * (10 - 7) + 7;
+let dudLength = 8;
 let sound = true;
-const infoText = "ROBCO INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
+let infoText = "ROBCO INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
 let correct = "";
 let words = {};
 let outputLines = [];
 let attemptsRemaining = 6;
 let power = "off";
-const bracketSets = ["<>", "[]", "{}", "()"];
-const gchars = [
+let bracketSets = ["<>", "[]", "{}", "()"];
+let gchars = [
     "'", "|", "\"", "!", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "=", ".", ";", ":", "?", ",", "/"
 ];
 
@@ -46,10 +46,10 @@ function initialize() {
 
 // Fill word columns with dots
 function wordColumnsWithDots() {
-    const column2 = $("#column2");
-    const column4 = $("#column4");
+    let column2 = $("#column2");
+    let column4 = $("#column4");
 
-    const dots = generateDotColumn();
+    let dots = generateDotColumn();
     column2.html(dots);
     column4.html(dots);
 }
@@ -83,7 +83,7 @@ function togglePower() {
 
 // Type text into a container with a typing animation
 function jTypeFill(containerID, text, typeSpeed, callback, typeCharacter, prefix) {
-    const cont = $("#" + containerID);
+    let cont = $("#" + containerID);
 
     if (!typeCharacter) typeCharacter = "&#9608;";
     if (!prefix) prefix = ">";
@@ -93,7 +93,7 @@ function jTypeFill(containerID, text, typeSpeed, callback, typeCharacter, prefix
     }, {
         duration: typeSpeed * text.length,
         step: function (i) {
-            const insert = prefix + text.substr(0, i);
+            let insert = prefix + text.substr(0, i);
             if (cont.text().substr(0, cont.text().length - 1) !== insert) {
                 if (sound) $("#audiostuff").find("audio").eq(Math.floor(Math.random() * $("#audiostuff").find("audio").length))[0].play();
             }
@@ -171,7 +171,7 @@ function setupInteractions(column) {
 
         if ($(this).hasClass("word")) {
             if (sound) $("#enter")[0].play();
-            const word = $(this).attr("data-word");
+            let word = $(this).attr("data-word");
             updateOutput(word);
 
             if (word.toLowerCase() === correct.toLowerCase()) {
@@ -202,8 +202,8 @@ function setupInteractions(column) {
 
 // Remove a dud word from the list
 function removeDud() {
-    const liveWords = $(".word").not(`[data-word='${correct.toUpperCase()}']`);
-    const wordToRemove = $(liveWords[Math.floor(Math.random() * liveWords.length)]).attr("data-word");
+    let liveWords = $(".word").not(`[data-word='${correct.toUpperCase()}']`);
+    let wordToRemove = $(liveWords[Math.floor(Math.random() * liveWords.length)]).attr("data-word");
 
     $(`[data-word='${wordToRemove}']`).each(function (index, elem) {
         $(this).text(".").removeClass("word").removeAttr("data-word");
@@ -386,15 +386,15 @@ function compareWords(first, second) {
 
 // Update the console display with a word
 function updateConsole(word) {
-    const cont = $("#console");
-    const typeSpeed = 80;
+    let cont = $("#console");
+    let typeSpeed = 80;
 
     cont.html("").stop().css("fake-property", 0).animate({
         "fake-property": word.length
     }, {
         duration: typeSpeed * word.length,
         step: function (i) {
-            const insert = ">" + word.substr(0, i);
+            let insert = ">" + word.substr(0, i);
             if (cont.text().substr(0, cont.text().length - 1) !== insert) {
                 if (sound) $("#audiostuff").find("audio").eq(Math.floor(Math.random() * $("#audiostuff").find("audio").length))[0].play();
             }
@@ -417,14 +417,14 @@ function updateOutput(text) {
 
 // Populate the info display with text
 function populateInfo() {
-    const cont = $("#info");
+    let cont = $("#info");
 
     cont.stop().css("fake-property", 0).animate({
         "fake-property": infoText.length
     }, {
         duration: 20 * infoText.length,
         step: function (delta) {
-            const insert = infoText.substr(0, delta);
+            let insert = infoText.substr(0, delta);
             if (cont.html().substr(0, cont.html().length - 1) !== insert) {
                 $("#audiostuff").find("audio").eq(Math.floor(Math.random() * $("#audiostuff").find("audio").length))[0].play();
             }
@@ -442,8 +442,8 @@ function setupOutput() {
 
 // Fill the pointer columns with random pointers
 function fillPointerColumns() {
-    const column1 = document.getElementById("column1");
-    const column3 = document.getElementById("column3");
+    let column1 = document.getElementById("column1");
+    let column3 = document.getElementById("column3");
 
     let pointers = "";
     for (let i = 0; i < columnHeight; i++) {
@@ -460,8 +460,8 @@ function fillPointerColumns() {
 
 // Fill the word columns with words and garbage characters
 function fillWordColumns() {
-    const column2 = document.getElementById("column2");
-    const column4 = document.getElementById("column4");
+    let column2 = document.getElementById("column2");
+    let column4 = document.getElementById("column4");
 
     let column2Content = $(generateGarbageCharacters());
     let column4Content = $(generateGarbageCharacters());
@@ -470,8 +470,8 @@ function fillWordColumns() {
     let start = Math.floor(Math.random() * wordColumnWidth);
 
     for (let i = 0; i < words.length / 2; i++) {
-        const pos = start + i * Math.floor(allChars.length / (words.length / 2));
-        const word = words[i].toUpperCase();
+        let pos = start + i * Math.floor(allChars.length / (words.length / 2));
+        let word = words[i].toUpperCase();
         for (let s = 0; s < difficulty; s++) {
             $(allChars[pos + s]).addClass("word").text(word[s]).attr("data-word", word);
         }
@@ -484,8 +484,8 @@ function fillWordColumns() {
     start = Math.floor(Math.random() * wordColumnWidth);
     let maxNum = words.length;
     for (let i = 0; i < maxNum / 2; i++) {
-        const pos = start + i * Math.floor(allChars.length / (maxNum / 2));
-        const word = words[i + maxNum / 2].toUpperCase();
+        let pos = start + i * Math.floor(allChars.length / (maxNum / 2));
+        let word = words[i + maxNum / 2].toUpperCase();
         for (let s = 0; s < difficulty; s++) {
             $(allChars[pos + s]).addClass("word").text(word[s]).attr("data-word", word);
         }
@@ -496,14 +496,14 @@ function fillWordColumns() {
 
 // Add dud brackets to the nodes
 function addDudBrackets(nodes) {
-    const allBlankIndices = getContinuousBlanks(nodes);
+    let allBlankIndices = getContinuousBlanks(nodes);
 
     for (let i = 1; i < allBlankIndices.length; i++) {
         if (Math.round(Math.random() + 0.25)) {
-            const brackets = bracketSets[Math.floor(Math.random() * bracketSets.length)];
-            const chunkCenter = Math.floor(allBlankIndices[i].length / 2);
-            const jStart = chunkCenter - dudLength / 2;
-            const jEnd = chunkCenter + dudLength / 2;
+            let brackets = bracketSets[Math.floor(Math.random() * bracketSets.length)];
+            let chunkCenter = Math.floor(allBlankIndices[i].length / 2);
+            let jStart = chunkCenter - dudLength / 2;
+            let jEnd = chunkCenter + dudLength / 2;
 
             for (let j = jStart; j < jEnd; j++) {
                 if (j === jStart) $(nodes[allBlankIndices[i][j]]).text(brackets[0]).addClass("dudcap");
@@ -519,8 +519,8 @@ function addDudBrackets(nodes) {
 
 // Get continuous blank nodes
 function getContinuousBlanks(nodes) {
-    const allNodes = $(nodes);
-    const continuousBlanks = [[]];
+    let allNodes = $(nodes);
+    let continuousBlanks = [[]];
     let cur = 0;
 
     $.each(allNodes, function (index, elem) {
@@ -539,7 +539,7 @@ function getContinuousBlanks(nodes) {
 
 // Print words and garbage characters to the container
 function printWords(container, words) {
-    const nodes = $(container).find(".character");
+    let nodes = $(container).find(".character");
 
     nodes.each(function (index, elem) {
         $(elem).delay(5 * index).queue(function () {
@@ -597,7 +597,7 @@ function randomPointer() {
     if (sound) {
         return "0x" + ("0000" + Math.floor(Math.random() * 35535).toString(16).toUpperCase()).substr(-4);
     } else {
-        const butt = ("0000" + Math.floor(Math.random() * 35535).toString(16).toUpperCase());
+        let butt = ("0000" + Math.floor(Math.random() * 35535).toString(16).toUpperCase());
         return "0x" + butt.slice(butt.length - 4);
     }
 }
