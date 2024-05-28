@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>dixon.rs</title>
+	<!-- Importing CSS for terminal styling -->
+	<link rel="stylesheet" href="css/terminal.css">
+	<!-- Importing jQuery from a reliable CDN with integrity check -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<!-- Background and terminal container -->
+<div id="terminal-background">
+	<img id="terminal-background-off" src="img/screenOff.png" alt="Terminal Screen Off">
+</div>
+<div id="terminal"></div>
+
+<!-- Power button to toggle terminal power -->
+<div id="powerbutton" onclick="togglePower()">&nbsp;</div>
+
+<!-- Audio elements for terminal sounds -->
+<div id="otheraudiostuff">
+	<audio id="poweron" src="sound/poweron.ogg"></audio>
+	<audio id="poweroff" src="sound/poweroff.ogg"></audio>
+	<audio id="passbad" src="sound/passbad.ogg"></audio>
+	<audio id="passgood" src="sound/passgood.ogg"></audio>
+</div>
+<div id="audiostuff">
+	<audio id="enter" src="sound/kenter.ogg"></audio>
+	<audio id="k1" src="sound/k1.ogg"></audio>
+	<audio id="k2" src="sound/k2.ogg"></audio>
+	<audio id="k3" src="sound/k3.ogg"></audio>
+	<audio id="k4" src="sound/k4.ogg"></audio>
+	<audio id="k5" src="sound/k5.ogg"></audio>
+	<audio id="k6" src="sound/k6.ogg"></audio>
+	<audio id="k7" src="sound/k7.ogg"></audio>
+	<audio id="k8" src="sound/k8.ogg"></audio>
+	<audio id="k9" src="sound/k9.ogg"></audio>
+	<audio id="k10" src="sound/k10.ogg"></audio>
+</div>
+
+<!-- Importing terminal JavaScript functionality -->
+<script src="js/terminal.js"></script>
+</body>
+</html>
