@@ -34,7 +34,7 @@ if ($words !== FALSE && $length > 0 && $count > 0) {
                 $return["words"][$words[$index]] = $words[$index];
 
                 // Check to see if it's already in the array, if so, increment failsafe
-                if(count($return) == $i) {
+                if (count($return) == $i) {
                     $failsafe++;
                 } else {
                     $i++;
@@ -52,9 +52,9 @@ if ($words !== FALSE && $length > 0 && $count > 0) {
     }
 }
 
-$r=array();
-foreach($return["words"] as $item) {
-    $r["words"][]=$item;
+$r = array();
+foreach ($return["words"] as $item) {
+    $r["words"][] = $item;
 }
 
 // Output the result as a JSON-encoded string

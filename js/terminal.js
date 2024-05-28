@@ -4,7 +4,7 @@ const wordColumnWidth = 12;
 const count = 12;
 const difficulty = Math.random() * (10 - 7) + 7;
 const dudLength = 8;
-const sound = true;
+let sound = true;
 const infoText = "ROBCO INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
 let correct = "";
 let words = {};
@@ -320,22 +320,22 @@ function success() {
 
 function bootstrap() {
     $("#terminal").html('<div class="paddification" id="terminal-interior"></div>');
-bootstrapText="WELCOME TO ROBCO INDUSTRIES (TM) TERMLINK<br /><br /> " +
-    "&gt;SET TERMINAL/ENQUIRE<br /><br />" +
-    "RX-9000<br /><br />" +
-    ">SET FILE/PROTECTION=OWNER:RWED ACCOUNTS.F<br /><br />" +
-    ">SET HALT RESTART/MAINT<br /><br />" +
-    "Initializing RobCo Industries(TM) MF Boot Agent v2.3.0<br />" +
-    "RETROS BIOS<br />" +
-    "RBIOS-4.02.08.00 52EE5.E7.E8<br />" +
-    "Copyright 2075-2077 RobCo Ind.<br />" +
-    "Uppermem: 1024 KB<br />" +
-    "Root (5A8)<br />" +
-    "Maintenance Mode<br /><br />" +
-    ">RUN DEBUG/ACCOUNTS.F<br />";
-    jTypeFill("terminal-interior",bootstrapText,20,function(){
-        setTimeout(function(){
-            refreshScreen('<div id="info"></div><div id="attempts"></div><div id="column1" class="column pointers"></div><div id="column2" class="column words"></div><div id="column3" class="column pointers"></div><div id="column4" class="column words"></div><div id="output"></div><div id="console">></div>',false,function(){
+    bootstrapText = "WELCOME TO ROBCO INDUSTRIES (TM) TERMLINK<br /><br /> " +
+        "&gt;SET TERMINAL/ENQUIRE<br /><br />" +
+        "RX-9000<br /><br />" +
+        ">SET FILE/PROTECTION=OWNER:RWED ACCOUNTS.F<br /><br />" +
+        ">SET HALT RESTART/MAINT<br /><br />" +
+        "Initializing RobCo Industries(TM) MF Boot Agent v2.3.0<br />" +
+        "RETROS BIOS<br />" +
+        "RBIOS-4.02.08.00 52EE5.E7.E8<br />" +
+        "Copyright 2075-2077 RobCo Ind.<br />" +
+        "Uppermem: 1024 KB<br />" +
+        "Root (5A8)<br />" +
+        "Maintenance Mode<br /><br />" +
+        ">RUN DEBUG/ACCOUNTS.F<br />";
+    jTypeFill("terminal-interior", bootstrapText, 20, function () {
+        setTimeout(function () {
+            refreshScreen('<div id="info"></div><div id="attempts"></div><div id="column1" class="column pointers"></div><div id="column2" class="column words"></div><div id="column3" class="column pointers"></div><div id="column4" class="column words"></div><div id="output"></div><div id="console">></div>', false, function () {
                 wordColumnsWithDots();
                 fillPointerColumns();
                 setupOutput();
@@ -347,25 +347,25 @@ bootstrapText="WELCOME TO ROBCO INDUSTRIES (TM) TERMLINK<br /><br /> " +
                 start();
             });
 
-        },1500);
-    },"","");
+        }, 1500);
+    }, "", "");
 }
-function refreshScreen(html,padded,callback) {
+
+function refreshScreen(html, padded, callback) {
     let classes = "";
-    if(padded==true) {
-        classes="paddification";
+    if (padded == true) {
+        classes = "paddification";
     }
     $("#terminal-interior").animate({
         top: -1 * $("#terminal-interior").height()
     }, {
         duration: 1000,
         complete: function () {
-            $("#terminal").html("<div class=\""+classes+"\" id=\"terminal-interior\">"+html+"</div>");
+            $("#terminal").html("<div class=\"" + classes + "\" id=\"terminal-interior\">" + html + "</div>");
             callback();
         }
     })
 }
-
 
 
 // Compare two words and return the number of matching characters
