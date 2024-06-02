@@ -2,7 +2,7 @@
 let columnHeight = 17;
 let wordColumnWidth = 12;
 let count = 12;
-let difficulty = Math.random() * (10 - 7) + 7;
+let difficulty = Math.floor(Math.random() * (10 - 5) + 5);
 let dudLength = 8;
 let sound = true;
 let infoText = "ROBCO INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
